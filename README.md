@@ -8,6 +8,8 @@ Most AI tools just *chat* about portfolio risk. This one actually *simulates* it
 ![AI powered by Claude](https://img.shields.io/badge/AI-Claude-d97706)
 ![License: MIT](https://img.shields.io/badge/license-MIT-00d4aa)
 
+![Portfolio Evolution Engine](assets/screenshot.png)
+
 ## The Problem
 
 A LinkedIn user tried using Google Gemini to build a diversified portfolio. Gemini suggested equities + 20-year bonds. The user had to *manually* point out that rising interest rates would crash **both** stocks and bonds simultaneously — exactly what happened in 2022 ([Callan research](https://www.callan.com/blog/stock-and-bond-declines/)). Gemini just agreed and said "you're right."
