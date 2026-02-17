@@ -1,0 +1,119 @@
+{
+  "assets": {
+    "usEquities": {
+      "expectedReturn": 0.10,
+      "volatility": 0.16,
+      "betaRate": -0.15,
+      "betaInflation": -0.10,
+      "betaGrowth": 0.40,
+      "betaRiskOff": -0.30
+    },
+    "intlEquities": {
+      "expectedReturn": 0.08,
+      "volatility": 0.18,
+      "betaRate": -0.10,
+      "betaInflation": -0.08,
+      "betaGrowth": 0.35,
+      "betaRiskOff": -0.35
+    },
+    "emergingEquities": {
+      "expectedReturn": 0.10,
+      "volatility": 0.22,
+      "betaRate": -0.12,
+      "betaInflation": -0.05,
+      "betaGrowth": 0.45,
+      "betaRiskOff": -0.40
+    },
+    "longTermBonds": {
+      "expectedReturn": 0.04,
+      "volatility": 0.12,
+      "betaRate": -0.60,
+      "betaInflation": -0.30,
+      "betaGrowth": -0.10,
+      "betaRiskOff": 0.25
+    },
+    "shortTermBonds": {
+      "expectedReturn": 0.035,
+      "volatility": 0.03,
+      "betaRate": -0.10,
+      "betaInflation": -0.05,
+      "betaGrowth": -0.02,
+      "betaRiskOff": 0.05
+    },
+    "tips": {
+      "expectedReturn": 0.035,
+      "volatility": 0.06,
+      "betaRate": -0.20,
+      "betaInflation": 0.30,
+      "betaGrowth": -0.05,
+      "betaRiskOff": 0.10
+    },
+    "reits": {
+      "expectedReturn": 0.08,
+      "volatility": 0.20,
+      "betaRate": -0.30,
+      "betaInflation": 0.05,
+      "betaGrowth": 0.25,
+      "betaRiskOff": -0.20
+    },
+    "commodities": {
+      "expectedReturn": 0.05,
+      "volatility": 0.18,
+      "betaRate": 0.05,
+      "betaInflation": 0.35,
+      "betaGrowth": 0.15,
+      "betaRiskOff": -0.10
+    },
+    "gold": {
+      "expectedReturn": 0.04,
+      "volatility": 0.15,
+      "betaRate": -0.10,
+      "betaInflation": 0.20,
+      "betaGrowth": -0.05,
+      "betaRiskOff": 0.30
+    },
+    "cash": {
+      "expectedReturn": 0.04,
+      "volatility": 0.005,
+      "betaRate": 0.02,
+      "betaInflation": -0.01,
+      "betaGrowth": 0.00,
+      "betaRiskOff": 0.01
+    }
+  },
+  "regimes": {
+    "normal": {
+      "probability": 0.60,
+      "volMultiplier": 1.0,
+      "correlationOverrides": {},
+      "description": "Normal market conditions with typical stock/bond negative correlation"
+    },
+    "stress_2022": {
+      "probability": 0.15,
+      "volMultiplier": 1.5,
+      "correlationOverrides": {
+        "stock_bond": 0.6,
+        "rate_inflation": 0.8
+      },
+      "description": "2022-style: rates spike, inflation high, stocks AND bonds crash together"
+    },
+    "stagflation": {
+      "probability": 0.15,
+      "volMultiplier": 1.3,
+      "correlationOverrides": {
+        "stock_bond": 0.3,
+        "inflation_growth": -0.7
+      },
+      "description": "Stagflation: high inflation with low growth, most assets struggle"
+    },
+    "deflation": {
+      "probability": 0.10,
+      "volMultiplier": 1.8,
+      "correlationOverrides": {
+        "stock_bond": -0.5,
+        "growth_riskOff": -0.8
+      },
+      "description": "Deflationary crash: growth collapses, bonds rally, equities crash hard"
+    }
+  }
+}

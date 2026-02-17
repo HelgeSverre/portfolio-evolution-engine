@@ -1,0 +1,30 @@
+{
+  "name": "portfolio-evolution-engine",
+  "version": "1.0.0",
+  "description": "Genetic portfolio optimizer with adversarial stress testing — breeds, mutates, and stress-tests investment portfolios across market crash scenarios to find allocations that survive",
+  "module": "src/server.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/server.ts",
+    "dev": "bun --hot run src/server.ts"
+  },
+  "keywords": [
+    "portfolio",
+    "investment",
+    "monte-carlo",
+    "genetic-algorithm",
+    "stress-testing",
+    "finance",
+    "evolution"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.74.0"
+  }
+}

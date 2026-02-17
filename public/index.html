@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Evolution Engine</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">P</span>
+        <span class="logo-text">PORTFOLIO</span>
+        <span class="logo-badge">EVOLUTION ENGINE</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="status-dot"></span>
+      <span class="status-text">Engine Ready</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="panel-grid">
+      <!-- LEFT: Portfolio Builder + Evolution Controls -->
+      <section class="panel portfolio-panel">
+        <div class="panel-header">
+          <h2>Seed Portfolio</h2>
+          <button class="btn btn-sm" id="btn-reset">Reset</button>
+        </div>
+        <div class="panel-body">
+          <div id="allocation-sliders"></div>
+          <div class="allocation-total">
+            <span>Total</span>
+            <span id="total-pct" class="total-value">0%</span>
+          </div>
+          <div class="preset-row">
+            <span class="label-sm">Presets</span>
+            <button class="btn btn-xs" data-preset="conservative">Conservative</button>
+            <button class="btn btn-xs" data-preset="balanced">Balanced</button>
+            <button class="btn btn-xs" data-preset="aggressive">Aggressive</button>
+            <button class="btn btn-xs" data-preset="allweather">All-Weather</button>
+          </div>
+
+          <div class="evo-controls">
+            <h3 class="section-title">Evolution Parameters</h3>
+            <div class="evo-param">
+              <label>
+                <span class="alloc-label">Population Size</span>
+                <span class="alloc-value" id="val-pop">20</span>
+              </label>
+              <input type="range" id="evo-population" min="10" max="40" step="5" value="20" />
+            </div>
+            <div class="evo-param">
+              <label>
+                <span class="alloc-label">Generations</span>
+                <span class="alloc-value" id="val-gen">8</span>
+              </label>
+              <input type="range" id="evo-generations" min="3" max="20" step="1" value="8" />
+            </div>
+            <div class="evo-param">
+              <label>
+                <span class="alloc-label">Mutation Rate</span>
+                <span class="alloc-value" id="val-mut">60%</span>
+              </label>
+              <input type="range" id="evo-mutation" min="10" max="90" step="5" value="60" />
+            </div>
+            <div class="evo-param">
+              <label>
+                <span class="alloc-label">Adversarial Pressure</span>
+                <span class="alloc-value" id="val-adv">50%</span>
+              </label>
+              <input type="range" id="evo-adversarial" min="0" max="100" step="10" value="50" />
+            </div>
+            <p class="param-hint">Higher adversarial pressure biases toward stress scenarios — the optimizer fights harder to survive crashes</p>
+
+            <button class="btn btn-primary btn-lg" id="btn-evolve">
+              <span class="btn-icon">🧬</span> Evolve Portfolio
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CENTER: Evolution Results -->
+      <section class="panel results-panel">
+        <div class="panel-header">
+          <h2>Evolution Results</h2>
+          <div class="sim-controls">
+            <label class="label-sm">
+              Scenarios/gen
+              <select id="num-scenarios">
+                <option value="1000">1,000</option>
+                <option value="2000" selected>2,000</option>
+                <option value="5000">5,000</option>
+              </select>
+            </label>
+            <label class="label-sm">
+              Horizon
+              <select id="horizon">
+                <option value="6">6 mo</option>
+                <option value="12" selected>1 yr</option>
+                <option value="24">2 yr</option>
+                <option value="36">3 yr</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div id="results-placeholder" class="placeholder-state">
+            <div class="placeholder-icon">🧬</div>
+            <p>Set your seed portfolio and evolve it</p>
+            <p class="text-muted">The genetic optimizer will breed, mutate, and stress-test thousands of portfolio variants across market crashes, rate spikes, inflation shocks, and correlation breakdowns — then show you what survives</p>
+          </div>
+          <div id="results-content" style="display:none">
+            <!-- Evolution progress -->
+            <div id="evo-progress" style="display:none">
+              <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+              </div>
+              <div class="progress-text" id="progress-text">Evolving...</div>
+            </div>
+
+            <!-- Before/After comparison -->
+            <div class="comparison-section" id="comparison-section"></div>
+
+            <!-- Fitness curve -->
+            <div class="chart-card">
+              <h3>Fitness Evolution</h3>
+              <canvas id="chart-fitness" width="500" height="180"></canvas>
+            </div>
+
+            <!-- Adversarial findings -->
+            <div class="adversarial-section" id="adversarial-section"></div>
+
+            <!-- Hall of fame -->
+            <div class="halloffame-section" id="halloffame-section"></div>
+
+            <!-- Champion allocation -->
+            <div class="champion-section" id="champion-section"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Chat -->
+      <section class="panel chat-panel">
+        <div class="panel-header">
+          <h2>AI Risk Coach</h2>
+          <button class="btn btn-sm" id="btn-clear-chat">Clear</button>
+        </div>
+        <div class="panel-body chat-body">
+          <div id="chat-messages">
+            <div class="chat-msg assistant">
+              <div class="msg-content">
+                <p>👋 I'm your AI portfolio risk coach powered by evolutionary optimization.</p>
+                <p>Set a seed portfolio, then hit <strong>Evolve</strong> — I'll breed mutant portfolios, stress-test them across market crashes, and tell you what the optimizer discovered.</p>
+                <p>The evolution engine uses <strong>adversarial pressure</strong> — it deliberately tries to break your portfolio with rate spikes, inflation shocks, and correlation breakdowns, then evolves to survive them.</p>
+              </div>
+            </div>
+          </div>
+          <div class="chat-input-row">
+            <input type="text" id="chat-input" placeholder="Ask about evolution results, risks..." />
+            <button class="btn btn-primary" id="btn-send">Send</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
