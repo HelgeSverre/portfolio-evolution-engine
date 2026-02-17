@@ -57,7 +57,7 @@ After installing, **close and reopen your terminal** so the `bun` command is ava
 ### 2. Download & Install
 
 ```bash
-git clone https://github.com/nickvdyck/portfolio-evolution-engine.git
+git clone https://github.com/HelgeSverre/portfolio-evolution-engine.git
 cd portfolio-evolution-engine
 bun install
 ```
